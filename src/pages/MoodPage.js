@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Credentials } from '../components/Credentials';
 import Dropdown from '../components/Dropdown';
 
+
+
 export default function MoodPage() {
 
   const spotify = Credentials();  
@@ -15,13 +17,13 @@ export default function MoodPage() {
     axios('https://accounts.spotify.com/api/token', {
       headers : {
         'Content-Type' : 'application/x-www-form-urlencoded',
-        'Authorization' : 'Basic ' + btoa(spotify.CliendId + ':' + spotify.ClientSecret)
+        'Authorization' : 'Basic ' + btoa(spotify.ClientId + ':' + spotify.ClientSecret)
       },
       data: 'grant_type=client_credentials',
       method: 'POST'
     })
     .then(tokenResponse => {
-      console.log(tokenResponse.json());
+      console.log(tokenResponse);
       console.log(tokenResponse.data.access_token);
       setToken(tokenResponse.data.access_token);
 
