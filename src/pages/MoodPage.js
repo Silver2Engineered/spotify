@@ -28,9 +28,11 @@ export default function MoodPage() {
 
         <section class="emotion6"></section>
 
-      </div>
+        <section class="submit">
+          <button type="button" class="submit-buton">Show me music!</button>
+        </section>
 
-      <div class = "spacer"></div>
+      </div>
 
     </div>
   );
