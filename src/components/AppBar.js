@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
+import HomeIcon from '@material-ui/icons/Home';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,15 +25,15 @@ export default function ButtonAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MusicNoteIcon />
-          </IconButton>
+          <MusicNoteIcon />
           <Typography variant="h6" className={classes.title}>
-            What's your mood?
+            Name Here
           </Typography>
-          <Button color="inherit">Login</Button>
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <HomeIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
     </div>
