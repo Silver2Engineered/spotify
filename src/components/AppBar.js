@@ -11,6 +11,8 @@ import HomeIcon from '@material-ui/icons/Home';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    position: "fixed",
+    color: "secondary"
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -25,7 +27,7 @@ export default function ButtonAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="fixed">
+      <AppBar>
         <Toolbar>
           <MusicNoteIcon />
           <Typography variant="h6" className={classes.title}>
