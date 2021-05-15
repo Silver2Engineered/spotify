@@ -6,7 +6,7 @@ import TrackPage from './pages/TrackPage.js'
 function App() {
   return (
     <div>
-      <TrackPage />
+      <MoodPage />
     </div>
   );
 }
