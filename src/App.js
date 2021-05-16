@@ -1,7 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import MoodPage from './pages/MoodPage.js';
-import TrackPage from './pages/TrackPage.js'
+import TrackPage from './pages/TrackPage.js';
 
 function App() {
   return (
