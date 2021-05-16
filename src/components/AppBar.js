@@ -11,8 +11,8 @@ import HomeIcon from '@material-ui/icons/Home';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    position: "fixed",
-    color: "secondary"
+    //position: "fixed",
+    //color: "secondary"
   },
   menuButton: {
     marginRight: theme.spacing(2),
