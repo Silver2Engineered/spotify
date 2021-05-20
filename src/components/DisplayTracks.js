@@ -10,40 +10,10 @@ import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
 import { Credentials } from '../components/Credentials';
 
-// let track  = [];
-// let artist = [];
-// let album = [];
-
 let spotifyData = [];
-
-let rows  =  [];
 
 const recsURL  = 'https://api.spotify.com/v1/recommendations?limit=10&seed_genres=rock';
 let token;
-
-// const getRecs = (url, token) => {
-//   fetch(url, {
-//     method: 'GET', headers: {
-//       'Accept': 'application/json',
-//       'Content-Type': 'application/json',
-//       'Authorization': 'Bearer ' + token
-//     }
-//   })
-//   .then((response) => {
-//       response.json().then(
-//       (data) => { 
-//       console.log("RES:", data);
-//       const items = data.tracks;
-//       items.forEach(i => {
-//         track.push(i.name);
-//         artist.push(i.artists[0].name);
-//         album.push(i.album.name);
-//       });
-//        }
-//      );
-//   })
-// };
-
 
 const useStyles = makeStyles({
   table: {
@@ -51,17 +21,9 @@ const useStyles = makeStyles({
   },
 });
 
-// function createData(track, artist, album) {
-//   console.log(track, artist, album);
-//   return { track, artist, album };
-// }
-
 export default function DisplayTracks() {
 
   const [trackData, setTrackData] = useState([]);
-  // const [tracks, setTracks] = useState([]);
-  // const [artists, setArtists] = useState([]);
-  // const [albums, setAlbums] = useState([]);
 
   const spotify = Credentials();  
   const classes = useStyles();
@@ -78,7 +40,6 @@ export default function DisplayTracks() {
     .then(tokenResponse => {
       token = tokenResponse.data.access_token;
       console.log("ACCESS TOKEN:", token);
-      //getRecs(recsURL, token);
       fetch(recsURL, {
         method: 'GET', headers: {
           'Accept': 'application/json',
@@ -92,38 +53,15 @@ export default function DisplayTracks() {
         console.log("RES:", data);
         const items = data.tracks;
         items.forEach(i => {
-          // track.push(i.name);
-          // artist.push(i.artists[0].name);
-          // album.push(i.album.name);
 
           spotifyData.push([i.name, i.artists[0].name, i.album.name]);
         });
          })
          .then(() => {
-          // setTracks(track);
-          // setArtists(artist);
-          // setAlbums(album);
-          // console.log("STATE:", tracks, albums, artists);
-
           setTrackData(spotifyData);
           console.log(spotifyData);
           console.log("STATE:", trackData);
         })
-        // .then(() => {
-        //   rows = [
-        //     createData(track[0], artist[0], album[0]),
-        //     createData(track[1], artist[1], album[1]),
-        //     createData(track[2], artist[2], album[2]),
-        //     createData(track[3], artist[3], album[3]),
-        //     createData(track[4], artist[4], album[4]),
-        //     createData(track[5], artist[5], album[5]),
-        //     createData(track[6], artist[6], album[6]),
-        //     createData(track[7], artist[7], album[7]),
-        //     createData(track[8], artist[8], album[8]),
-        //     createData(track[9], artist[9], album[9])
-        //   ];
-        //   console.log(rows)
-        // })
       })
     })
   },[]);
@@ -147,7 +85,7 @@ export default function DisplayTracks() {
         </TableHead>
         <TableBody>
           {trackData.map((row) => (
-            <TableRow key={row}>
+            <TableRow key={row[0]}>
               <TableCell component="th" scope="row">
                 {row[0]}
               </TableCell>
