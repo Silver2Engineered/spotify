@@ -33,6 +33,33 @@ const getMe = (url, token) => {
   });
 };
 
+const getRecs = (url, token) => {
+  fetch(url, {
+    method: 'GET', headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    }
+  })
+  .then((response) => {
+      response.json().then(
+      (data) => { 
+      console.log(data);
+      //const next = data.categories.next;
+      //const items =  data.categories.items;
+      //items.forEach(g => {
+          //console.log(g);
+          //genres.push(g.name);
+      //});
+      //console.log("GENRES: ", genres);
+      //if (next) {
+        //getMe(next, token);
+      //}
+       }
+     );
+  });
+};
+
 export default function MoodPage() {
 
   const spotify = Credentials();  
@@ -51,7 +78,8 @@ export default function MoodPage() {
       console.log("ACCESS TOKEN:", token);
 
       const genreURL = 'https://api.spotify.com/v1/browse/categories';
-      getMe(genreURL, token);
+      const recsURL  = 'https://api.spotify.com/v1/recommendations?limit=10&seed_genres=rock';
+      getRecs(recsURL, token);
       console.log(genres);
     });
   },[]);
