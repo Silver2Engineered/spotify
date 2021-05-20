@@ -13,17 +13,17 @@ export default function ChooseEmotion() {
 
         <div class="grid-container">
 
-            <section class="emotion1"></section>
+            <section class="emotion1">Happy</section>
 
-            <section class="emotion2"></section>
+            <section class="emotion2">Sad</section>
 
-            <section class="emotion3"></section>
+            <section class="emotion3">Hype</section>
 
-            <section class="emotion4"></section>
+            <section class="emotion4">Chill</section>
 
-            <section class="emotion5"></section>
+            <section class="emotion5">Angry</section>
 
-            <section class="emotion6"></section>
+            <section class="emotion6">Nostalgic</section>
 
         </div>
     </div>

@@ -42,36 +42,31 @@ section{
     font-family: 'Arial';
     justify-content: center;
     align-items: center;
+    border: 1px solid black;
 }
 
 .emotion1{
     grid-area: emotion1;
-    background-color: hotpink;
 }
 
 .emotion2{
     grid-area: emotion2;
-    background-color: hotpink;
 }
 
 .emotion3{
     grid-area: emotion3;
-    background-color: hotpink;
 }
 
 .emotion4{
     grid-area: emotion4;
-    background-color: hotpink;
 }
 
 .emotion5{
     grid-area: emotion5;
-    background-color: hotpink;
 }
 
 .emotion6{
     grid-area: emotion6;
-    background-color: hotpink;
 }
 
 /*small screen layout*/
