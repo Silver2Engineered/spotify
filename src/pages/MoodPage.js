@@ -4,35 +4,6 @@ import axios from 'axios';
 import { Credentials } from '../components/Credentials';
 import ChooseEmotion from '../components/ChooseEmotion.js';
 
-let genres  = [];
-
-const getMe = (url, token) => {
-  fetch(url, {
-    method: 'GET', headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + token
-    }
-  })
-  .then((response) => {
-      response.json().then(
-      (data) => { 
-      console.log(data);
-      const next = data.categories.next;
-      const items =  data.categories.items;
-      items.forEach(g => {
-          console.log(g);
-          genres.push(g.name);
-      });
-      console.log("GENRES: ", genres);
-      if (next) {
-        getMe(next, token);
-      }
-      }
-    );
-  });
-};
-
 export default function MoodPage() {
 
   const spotify = Credentials();  
@@ -49,10 +20,6 @@ export default function MoodPage() {
     .then(tokenResponse => {
       let token = tokenResponse.data.access_token;
       console.log("ACCESS TOKEN:", token);
-
-      const genreURL = 'https://api.spotify.com/v1/browse/categories';
-      getMe(genreURL, token);
-      console.log(genres);
     });
   },[]);
 
