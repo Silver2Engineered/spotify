@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import DisplayTracks from './DisplayTracks.js';
+import TrackPage from '../pages/TrackPage.js';
 
 export default function ChooseEmotion() {
+
+  const [page, setPage] = useState("");
 
   return (
     <div>
@@ -13,7 +18,11 @@ export default function ChooseEmotion() {
 
         <div class="grid-container">
 
-            <section class="emotion1">Happy</section>
+            <section class="emotion1" >{/*onClick={() => setPage("TRACK_PAGE")}>*/}
+              Happy
+            </section>
+
+            {/*{page === "TRACK_PAGE" ? <TrackPage/> : null}*/}
 
             <section class="emotion2">Sad</section>
 
