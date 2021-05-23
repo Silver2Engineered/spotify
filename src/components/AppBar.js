@@ -8,36 +8,28 @@ import IconButton from '@material-ui/core/IconButton';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import HomeIcon from '@material-ui/icons/Home';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    //position: "fixed",
-    //color: "secondary"
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
+class ButtonAppBar extends React.Component {
 
-export default function ButtonAppBar() {
-  const classes = useStyles();
-
-  return (
-    <div className={classes.root}>
-      <AppBar>
-        <Toolbar>
-          <MusicNoteIcon />
-          <Typography variant="h6" className={classes.title}>
-            Name Here
-          </Typography>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <HomeIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
+  render() {
+    return (
+      <div style={{
+        flexGrow: 1,
+      }}>
+        <AppBar>
+          <Toolbar>
+            <MusicNoteIcon />
+            <Typography variant="h6" style={{flexGrow: 1,}}>
+              Spotify Mood Maker
+            </Typography>
+            <IconButton edge="start" style={{marginRight: "10px",}} color="inherit" aria-label="menu">
+              <HomeIcon onClick={this.props.handleHome}/>
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+  }
+  
 }
+
+export default ButtonAppBar;

@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function DisplayTracks() {
+export default function DisplayTracks(props) {
 
   const [trackData, setTrackData] = useState([]);
 
@@ -71,7 +71,7 @@ export default function DisplayTracks() {
         <div class = "spacer"></div>
 
         <div class="heading">
-            <h1>(Emotion) Songs</h1>
+            <h1>{props.emotion} Songs</h1>
         </div>
 
         <TableContainer component={Paper}>

@@ -3,14 +3,19 @@ import ButtonAppBar from '../components/AppBar.js';
 import DisplayTracks from '../components/DisplayTracks.js';
 import './Pages.css';
 
-export default function TrackPage() {
+class TrackPage extends React.Component {
 
-  return (
-    <div>
-      <ButtonAppBar/>
-
-      <DisplayTracks/>
-
-    </div>
-  );
+  render() {
+    return (
+      <div>
+        <ButtonAppBar handleHome={this.props.handleHome}/>
+  
+        <DisplayTracks emotion={this.props.emotion}/>
+  
+      </div>
+    );
+  }
+  
 }
+
+export default TrackPage
