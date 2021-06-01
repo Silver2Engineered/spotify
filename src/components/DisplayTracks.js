@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, onClick } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -22,15 +22,14 @@ const useStyles = makeStyles({
   },
 });
 
-function playSong (url) {
-  console.log(url)
-}
+
 
 export default function DisplayTracks(props) {
 
 
   const [trackData, setTrackData] = useState([]);
   let [recsURL, setRecsURL] = useState([]);
+  let [url, setURL] = useState([]);
 
   if (props.emotion == 'Happy') {
     recsURL = 'https://api.spotify.com/v1/recommendations?limit=10&seed_genres=happy';
@@ -51,6 +50,15 @@ export default function DisplayTracks(props) {
     recsURL = 'https://api.spotify.com/v1/recommendations?limit=10&seed_genres=disney';
   }
   
+  function playSong (e, url) {
+    console.log(e)
+    console.log(url)
+  
+    setURL(url)
+  }
+  function stopSong(e) {
+    setURL("")
+  }
 
   const spotify = Credentials();  
   const classes = useStyles();
@@ -125,15 +133,18 @@ export default function DisplayTracks(props) {
               </TableCell>
               <TableCell align="right">{row[1]}</TableCell>
               <TableCell align="right">{row[2]}</TableCell>
-              <TableCell align="right"><button onClick={playSong(row[4])}>Play Song</button></TableCell>
+              <TableCell align="right">
+                <div>
+                  <button onClick={(e) => playSong(e, row[4])}>Play Song</button>
+                  <button onClick={(e) => stopSong(e)}>Stop</button>
+                </div>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
-    <ReactPlayer id="reactPlayer" url="" playing="false"/>
-    
-
+    <ReactPlayer url={url} playing={url ? true : false}/>
     </div>
   )
 }
