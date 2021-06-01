@@ -33,7 +33,7 @@ class ChooseEmotion extends React.Component {
   
               <section class="emotion5" onClick={(e) => this.props.handleChange(e, "Angry")}>Angry</section>
   
-              <section class="emotion6" onClick={(e) => this.props.handleChange(e, "Nostalgic")}>Nostalgic</section>
+              <section class="emotion6" onClick={(e) => this.props.handleChange(e, "Kids")}>Kids</section>
   
           </div>
       </div>

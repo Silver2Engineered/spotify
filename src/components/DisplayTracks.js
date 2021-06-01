@@ -8,11 +8,12 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
+import ReactPlayer from 'react-player';
 import { Credentials } from '../components/Credentials';
 
 let spotifyData = [];
 
-const recsURL  = 'https://api.spotify.com/v1/recommendations?limit=10&seed_genres=rock';
+//let recs  = 'https://api.spotify.com/v1/recommendations?limit=10&seed_genres=rock';
 let token;
 
 const useStyles = makeStyles({
@@ -21,12 +22,39 @@ const useStyles = makeStyles({
   },
 });
 
+function playSong (url) {
+  console.log(url)
+}
+
 export default function DisplayTracks(props) {
 
+
   const [trackData, setTrackData] = useState([]);
+  let [recsURL, setRecsURL] = useState([]);
+
+  if (props.emotion == 'Happy') {
+    recsURL = 'https://api.spotify.com/v1/recommendations?limit=10&seed_genres=happy';
+  }
+  else if (props.emotion == 'Sad') {
+    recsURL = 'https://api.spotify.com/v1/recommendations?limit=10&seed_genres=sad';
+  }
+  else if (props.emotion == 'Hype') {
+    recsURL = 'https://api.spotify.com/v1/recommendations?limit=10&seed_genres=party';
+  }
+  else if (props.emotion == 'Chill') {
+    recsURL = 'https://api.spotify.com/v1/recommendations?limit=10&seed_genres=chill';
+  }
+  else if (props.emotion == 'Angry') {
+    recsURL = 'https://api.spotify.com/v1/recommendations?limit=10&seed_genres=heavy-metal';
+  }
+  else if (props.emotion == 'Kids') {
+    recsURL = 'https://api.spotify.com/v1/recommendations?limit=10&seed_genres=disney';
+  }
+  
 
   const spotify = Credentials();  
   const classes = useStyles();
+
 
   useEffect(() => {
     axios('https://accounts.spotify.com/api/token', {
@@ -40,6 +68,10 @@ export default function DisplayTracks(props) {
     .then(tokenResponse => {
       token = tokenResponse.data.access_token;
       console.log("ACCESS TOKEN:", token);
+
+      setRecsURL(recsURL)
+      
+      
       fetch(recsURL, {
         method: 'GET', headers: {
           'Accept': 'application/json',
@@ -52,9 +84,10 @@ export default function DisplayTracks(props) {
         (data) => { 
         console.log("RES:", data);
         const items = data.tracks;
+        spotifyData = []
         items.forEach(i => {
 
-          spotifyData.push([i.name, i.artists[0].name, i.album.name]);
+          spotifyData.push([i.name, i.artists[0].name, i.album.name, i.href, i.preview_url]);
         });
          })
          .then(() => {
@@ -81,6 +114,7 @@ export default function DisplayTracks(props) {
             <TableCell><b>Song</b></TableCell>
             <TableCell align="right"><b>Artist</b></TableCell>
             <TableCell align="right"><b>Album</b></TableCell>
+            <TableCell align="right"><b>Add to Spotify</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -91,11 +125,14 @@ export default function DisplayTracks(props) {
               </TableCell>
               <TableCell align="right">{row[1]}</TableCell>
               <TableCell align="right">{row[2]}</TableCell>
+              <TableCell align="right"><button onClick={playSong(row[4])}>Play Song</button></TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
+    <ReactPlayer id="reactPlayer" url="" playing="false"/>
+    
 
     </div>
   )
