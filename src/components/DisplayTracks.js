@@ -107,44 +107,58 @@ export default function DisplayTracks(props) {
     })
   },[]);
 
-  return (
-    <div> 
-        <div class = "spacer"></div>
+  console.log("url", url)
 
-        <div class="heading">
-            <h1>{props.emotion} Songs</h1>
-        </div>
-
-        <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell><b>Song</b></TableCell>
-            <TableCell align="right"><b>Artist</b></TableCell>
-            <TableCell align="right"><b>Album</b></TableCell>
-            <TableCell align="right"><b>Add to Spotify</b></TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {trackData.map((row) => (
-            <TableRow key={row[0]}>
-              <TableCell component="th" scope="row">
-                {row[0]}
-              </TableCell>
-              <TableCell align="right">{row[1]}</TableCell>
-              <TableCell align="right">{row[2]}</TableCell>
-              <TableCell align="right">
-                <div>
-                  <button onClick={(e) => playSong(e, row[4])}>Play Song</button>
-                  <button onClick={(e) => stopSong(e)}>Stop</button>
-                </div>
-              </TableCell>
+  //if (url == []) {
+    return (
+      <div> 
+          <div class = "spacer"></div>
+  
+          <div class="heading">
+              <h1>{props.emotion} Songs</h1>
+          </div>
+  
+          <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell><b>Song</b></TableCell>
+              <TableCell align="right"><b>Artist</b></TableCell>
+              <TableCell align="right"><b>Album</b></TableCell>
+              <TableCell align="right"><b>Add to Spotify</b></TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    <ReactPlayer url={url} playing={url ? true : false}/>
-    </div>
-  )
+          </TableHead>
+          <TableBody>
+            {trackData.map((row) => (
+              <TableRow key={row[0]}>
+                <TableCell component="th" scope="row">
+                  {row[0]}
+                </TableCell>
+                <TableCell align="right">{row[1]}</TableCell>
+                <TableCell align="right">{row[2]}</TableCell>
+                <TableCell align="right">
+                  {row[4] ? 
+                  <div>
+                    <button onClick={(e) => playSong(e, row[4])}>Play Song</button>
+                    <button onClick={(e) => stopSong(e)}>Stop</button>
+                  </div> : 
+                  <div></div>}
+                  
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      {
+        url.length == 0 ? <div></div> : <ReactPlayer url={url} playing={url ? true : false}/>
+      }
+      </div>
+    )
+
+  //}
+  //else {
+    
+  //}
+  
 }
