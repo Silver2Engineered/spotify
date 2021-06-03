@@ -30,7 +30,7 @@ class ButtonAppBar extends React.Component {
           <Toolbar>
             <MusicNoteIcon />
             <Typography variant="h6" style={{flexGrow: 1,}}>
-              Spotify Mood Player
+              Spotify Mood Maker
             </Typography>
             <IconButton edge="start" style={{marginRight: "10px",}} color="inherit" aria-label="menu">
               <HomeIcon onClick={this.props.handleHome}/>
