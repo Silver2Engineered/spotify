@@ -12,6 +12,16 @@ import ReactPlayer from 'react-player';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import StopIcon from '@material-ui/icons/Stop';
 import { Credentials } from '../components/Credentials';
+import {  createMuiTheme, ThemeProvider }  from '@material-ui/core/styles';
+
+const themeTwo = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#1DB954',
+      contrastText: '#FFFFFF',
+    },
+  },
+});
 
 let spotifyData = [];
 
@@ -120,11 +130,11 @@ export default function DisplayTracks(props) {
               <h1>{props.emotion} Songs</h1>
           </div>
   
-          <TableContainer component={Paper}>
+        <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
-            <TableRow>
-              <TableCell><b>Song</b></TableCell>
+            <TableRow style={{backgroundColor:'#999999',}}>
+              <TableCell color="#FFFFFF"><b>Song</b></TableCell>
               <TableCell align="right"><b>Artist</b></TableCell>
               <TableCell align="right"><b>Album</b></TableCell>
               <TableCell align="right"><b>Play Preview</b></TableCell>
@@ -152,6 +162,7 @@ export default function DisplayTracks(props) {
           </TableBody>
         </Table>
       </TableContainer>
+          
       {
         url.length == 0 ? <div></div> : <ReactPlayer url={url} playing={url ? true : false}/>
       }

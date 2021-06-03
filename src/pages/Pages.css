@@ -3,15 +3,18 @@ SPOTIFY HEX:
 black - #191414
 green - #1DB954
 white - #FFFFFF
+grey - #999999
 */
 
-AppBar{
+body{
     background-color: #191414;
+    text-decoration: none;
+    color: #FFFFFF;
 }
 
 a{
     text-decoration: none;
-    color: #191414;
+    color: #FFFFFF;
 }
 
 .heading{
@@ -33,8 +36,8 @@ a{
         "emotion1 emotion2 emotion3"
         "emotion4 emotion5 emotion6";
     min-height: 80vh;
-    grid-gap: 1rem;
-    margin: 2rem;
+    grid-gap: 8%;
+    margin: 8%;
 }
 
 section{
@@ -42,31 +45,36 @@ section{
     font-family: 'Arial';
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
 }
 
 .emotion1{
     grid-area: emotion1;
+    cursor: pointer;
 }
 
 .emotion2{
     grid-area: emotion2;
+    cursor: pointer;
 }
 
 .emotion3{
     grid-area: emotion3;
+    cursor: pointer;
 }
 
 .emotion4{
     grid-area: emotion4;
+    cursor: pointer;
 }
 
 .emotion5{
     grid-area: emotion5;
+    cursor: pointer;
 }
 
 .emotion6{
     grid-area: emotion6;
+    cursor: pointer;
 }
 
 /*small screen layout*/
@@ -92,3 +100,53 @@ section{
         font-size: 12px;
     }
 }
+
+/*Hover for Emotions*/
+
+.image-wrapper{
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.emotion-image{
+    width: 100%;
+}
+
+.emotion-title{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+
+.emotion-name{
+    font-size: 30px;
+    color: #FFFFFF;
+}
+
+.image-overlay{
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #191414;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .3s, visibility .3s;
+}
+
+.image-wrapper:hover .emotion-image{
+    transform: scale(1.05);
+    transition: 0.3s ease;
+}
+
+.image-wrapper:hover .image-overlay {
+    visibility: visible;
+    opacity: 0.9;
+  }
