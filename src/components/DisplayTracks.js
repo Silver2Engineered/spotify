@@ -9,6 +9,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
 import ReactPlayer from 'react-player';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import StopIcon from '@material-ui/icons/Stop';
 import { Credentials } from '../components/Credentials';
 
 let spotifyData = [];
@@ -125,7 +127,7 @@ export default function DisplayTracks(props) {
               <TableCell><b>Song</b></TableCell>
               <TableCell align="right"><b>Artist</b></TableCell>
               <TableCell align="right"><b>Album</b></TableCell>
-              <TableCell align="right"><b>Add to Spotify</b></TableCell>
+              <TableCell align="right"><b>Play Preview</b></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -139,8 +141,8 @@ export default function DisplayTracks(props) {
                 <TableCell align="right">
                   {row[4] ? 
                   <div>
-                    <button onClick={(e) => playSong(e, row[4])}>Play Song</button>
-                    <button onClick={(e) => stopSong(e)}>Stop</button>
+                    <PlayArrowIcon onClick={(e) => playSong(e, row[4])}></PlayArrowIcon>
+                    <StopIcon onClick={(e) => stopSong(e)}></StopIcon>
                   </div> : 
                   <div></div>}
                   

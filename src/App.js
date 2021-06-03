@@ -8,11 +8,20 @@ should we make it a single page app?*/}
 
 class App extends React.Component {
 
+
+  
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this)
     this.handleHome = this.handleHome.bind(this)
     this.state = {emotion: ""}
+  }
+
+  shouldComponentUpdate(nextProps) {
+    //otherstuff
+    document.title = this.props.total.toString();
+    console.log("Document title: ", document.title);
+    return true;
   }
 
   handleChange(e, emote) {
@@ -28,6 +37,7 @@ class App extends React.Component {
   }
 
   render() {
+    document.title = "Spotify Mood Player"
     if (this.state.emotion == "") {
       return (
         <div>
