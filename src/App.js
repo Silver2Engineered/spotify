@@ -19,7 +19,6 @@ class App extends React.Component {
 
   shouldComponentUpdate(nextProps) {
     //otherstuff
-    document.title = this.props.total.toString();
     console.log("Document title: ", document.title);
     return true;
   }
@@ -38,6 +37,7 @@ class App extends React.Component {
 
   render() {
     document.title = "Spotify Mood Player"
+    
     if (this.state.emotion == "") {
       return (
         <div>
