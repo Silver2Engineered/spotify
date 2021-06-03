@@ -1,12 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import ButtonAppBar from '../components/AppBar.js';
+import ChooseEmotion from '../components/ChooseEmotion.js';
 import axios from 'axios';
 import { Credentials } from '../components/Credentials';
 import Dropdown from '../components/Dropdown';
 var querystring = require('querystring');
 
-export default function MoodPage() {
+class MoodPage extends React.Component {
+  render() {
+    return (
+      <div>
+        <ButtonAppBar/>
+  
+        <ChooseEmotion handleChange={this.props.handleChange}/>
+  
+      </div>
+    );
+  }
+  
+}
 
+export default MoodPage;
   const spotify = Credentials();
 
   const [token, setToken] = useState('');
