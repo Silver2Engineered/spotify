@@ -63,14 +63,21 @@ export default function DisplayTracks(props) {
   }
   
   function playSong (e, url) {
-    console.log(e)
-    console.log(url)
+    //console.log(e)
+    //console.log(url)
   
     setURL(url)
   }
   function stopSong(e) {
     setURL("")
   }
+
+  function openSpotify(e, url) {
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+    if (newWindow) newWindow.opener = null
+  }
+
+
 
   const spotify = Credentials();  
   const classes = useStyles();
@@ -87,7 +94,7 @@ export default function DisplayTracks(props) {
     })
     .then(tokenResponse => {
       token = tokenResponse.data.access_token;
-      console.log("ACCESS TOKEN:", token);
+      //console.log("ACCESS TOKEN:", token);
 
       setRecsURL(recsURL)
       
@@ -102,24 +109,24 @@ export default function DisplayTracks(props) {
       .then((response) => {
         response.json().then(
         (data) => { 
-        console.log("RES:", data);
+        //console.log("RES:", data);
         const items = data.tracks;
         spotifyData = []
         items.forEach(i => {
 
-          spotifyData.push([i.name, i.artists[0].name, i.album.name, i.href, i.preview_url]);
+          spotifyData.push([i.name, i.artists[0].name, i.album.name, i.external_urls.spotify, i.preview_url]);
         });
          })
          .then(() => {
           setTrackData(spotifyData);
-          console.log(spotifyData);
-          console.log("STATE:", trackData);
+          //console.log(spotifyData);
+          //console.log("STATE:", trackData);
         })
       })
     })
   },[]);
 
-  console.log("url", url)
+  //console.log("url", url)
 
   //if (url == []) {
     return (
@@ -142,7 +149,7 @@ export default function DisplayTracks(props) {
           </TableHead>
           <TableBody>
             {trackData.map((row) => (
-              <TableRow key={row[0]}>
+              <TableRow key={row[0]} onClick={(e) => openSpotify(e, row[3])}>
                 <TableCell component="th" scope="row">
                   {row[0]}
                 </TableCell>
