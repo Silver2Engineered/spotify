@@ -149,12 +149,12 @@ export default function DisplayTracks(props) {
           </TableHead>
           <TableBody>
             {trackData.map((row) => (
-              <TableRow key={row[0]} onClick={(e) => openSpotify(e, row[3])}>
-                <TableCell component="th" scope="row">
+              <TableRow key={row[0]} >
+                <TableCell component="th" scope="row" onClick={(e) => openSpotify(e, row[3])}>
                   {row[0]}
                 </TableCell>
-                <TableCell align="right">{row[1]}</TableCell>
-                <TableCell align="right">{row[2]}</TableCell>
+                <TableCell align="right" onClick={(e) => openSpotify(e, row[3])}>{row[1]}</TableCell>
+                <TableCell align="right" onClick={(e) => openSpotify(e, row[3])}>{row[2]}</TableCell>
                 <TableCell align="right">
                   {row[4] ? 
                   <div>
