@@ -84,19 +84,29 @@ export default function DisplayTracks(props) {
 
 
   useEffect(() => {
-    axios('https://accounts.spotify.com/api/token', {
-      headers : {
-        'Content-Type' : 'application/x-www-form-urlencoded',
-        'Authorization' : 'Basic ' + btoa(spotify.ClientId + ':' + spotify.ClientSecret)
-      },
-      data: 'grant_type=client_credentials',
-      method: 'POST'
-    })
+    console.log("test1")
+    // axios('https://accounts.spotify.com/api/token', {
+    //   headers : {
+    //     'Content-Type' : 'application/x-www-form-urlencoded',
+    //     'Authorization' : 'Basic ' + btoa(spotify.ClientId + ':' + spotify.ClientSecret)
+    //   },
+    //   data: 'grant_type=client_credentials',
+    //   method: 'POST'
+    // })
+    fetch('https://accounts.spotify.com/api/token', {
+        method: 'POST',
+        body: 'grant_type=client_credentials&client_id=' + spotify.ClientId +  '&client_secret=' + spotify.ClientSecret,
+        origin: 'http:localhost:3000',
+        headers : {
+          'Content-Type' : 'application/x-www-form-urlencoded'
+        }
+       })
     .then(tokenResponse => {
-      token = tokenResponse.data.access_token;
-      //console.log("ACCESS TOKEN:", token);
-
-      setRecsURL(recsURL)
+      tokenResponse.json().then(  (tokenResponse)  => {
+        console.log(tokenResponse)
+        token = tokenResponse.access_token
+        console.log("ACCESS TOKEN:", token);
+        setRecsURL(recsURL)
       
       
       fetch(recsURL, {
@@ -124,6 +134,8 @@ export default function DisplayTracks(props) {
         })
       })
     })
+  }
+  )
   },[]);
 
   //console.log("url", url)
